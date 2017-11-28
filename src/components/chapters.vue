@@ -1,48 +1,18 @@
 <template>
-  <div class="coursedetail">
-    <div class="jumbotron">
-      <h1>{{course}}</h1>
-      <p>...</p>
+  <div class="chapters"> 
 
-    </div>
-    <div>
-      <ul class="hour-level">
-        <li><span>时间</span>{{hours}}hours</li>
-        <li><span>难度</span>{{hours}}</li>
-      </ul>
-    </div>
-    <div class="four-section">
-       <ul>
-      <li class="active" v-on:click="">课程概述</li>
-      <li v-on:click="">课程章节</li>
-      <li>用户评价(0)</li>
-      <li>常见问题</li>
-    </ul>
-    </div>
-    <overview v-bind:reason="whystudy"
-              v-bind:brief="what_to_study_brief"
-              v-bind:career="career_improvement"
-              v-bind:prerequisite="prerequisite"
-              v-bind:teachers="teachers"
-              v-bind:recommend="recommend_courses"
-    ></overview>
-    <chapters></chapters>
-    <normalquestions></normalquestions>
-
-  </div>
+课程章节
+1
+2
+3
+4
+      </div>
 </template>
 
 <script>
-import overview from '@/components/overview.vue'
-import chapters from '@/components/chapters.vue'
-import normalquestions from '@/components/normalquestions.vue'
+
 export default {
   name: 'CourseDetail',
-  components:{
-    'overview':overview,
-    'chapters':chapters,
-    'normalquestions':normalquestions
-  },
   data () {
     return {
       course:'',
@@ -70,14 +40,15 @@ export default {
       .then(
         function(response){
           
+          self.courses = response.data
           self.course = response.data.course;
           self.hours = response.data.hours;
           self.whystudy = response.data.why_study;
-          self.what_to_study_brief = response.data.what_to_study_brief;
           self.career_improvement = response.data.career_improvement;
           self.prerequisite = response.data.prerequisite;
-          self.teachers = response.data.teachers;
-          self.recommend_courses = response.data.recommend_courses;
+          self.teachers = response.data.teachers
+          self.recommend_courses = response.data.recommend_courses
+          // slef.recommend_courses = response.data.recommend_courses;
         }
       )
       .catch(function(error){
@@ -116,18 +87,6 @@ p{
   /* width: 80%; */
   font-size:16px;
   text-align: left;
-}
-.four-section li{
-  margin-left:5px;
-  width: 120px;
-  height: 50px;
-  line-height: 50px;
-  text-align: center;
-  font-size: 20px;
-}
-.active{
-  color:black;
-  background-color:red;
 }
 a {
   color: #42b983;

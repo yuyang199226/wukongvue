@@ -5,12 +5,17 @@
     <!-- <router-link to='/computers'>电脑</router-link> -->
     <!-- <router-link to='/phones'>手机</router-link> -->
       <router-view></router-view>
+      <!-- <headrr></headrr> -->
   </div>
 </template>
 
 <script>
+import xxx from '@/components/signup'
 export default {
-  name: 'app'
+  name: 'app',
+  // components:{
+  //   'headrr':xxx
+  // }
 }
 </script>
 

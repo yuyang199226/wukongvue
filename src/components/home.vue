@@ -26,8 +26,18 @@
                           <button type="submit" class="btn btn-default">搜索</button>
                       </form>
                   </li>
-                  <li> <router-link to="/login">登录</router-link></li>
-                  <li> <router-link to='/signup'>注册</router-link></li>
+                  
+
+                    <ul v-if="$store.state.username">
+                      <li> <router-link to="/" >{{ $store.state.username }}</router-link></li>
+                      <li> <a v-on:click='logout'>注销</a></li>  
+                    </ul>
+                    <ul v-else>
+                         <li> <router-link :to="{ path: '/login',query:{next:$route.path}}" >登录</router-link></li>
+                          <!-- <li> <router-link to="/login" >登录</router-link></li> -->
+                        <li> <router-link to='/signup'>注册</router-link></li>
+                    </ul>
+                 
                   <!-- <li><a href="/user_profile/" class="">Profile</a></li>
                   <li><a href="/logout/">Logout</a></li> -->
               </ul>
@@ -47,6 +57,11 @@ export default {
     return {
       msg: 'Wu kong'
     }
+  },
+  methods:{
+      logout:function(){
+          this.$store.commit('clearToken')
+      }
   }
 }
 </script>
@@ -59,5 +74,14 @@ export default {
 
 a {
   color: #42b983;
+}
+ul {
+  list-style-type: none;
+  display:inline-block;
+  padding: 0;
+}
+li {
+  display:inline-block;
+  margin: 0 10px;
 }
 </style>

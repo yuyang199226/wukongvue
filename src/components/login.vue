@@ -35,7 +35,9 @@
         </div>
 
     <div class="col-xs-offset-2 col-xs-8">
+          <!-- {{$store.state.username}} -->
            <button type="button" class="btn btn-success btn-block" v-on:click="login">登录</button>
+            
     </div>
 
     </div>
@@ -47,7 +49,7 @@
 </template>
 
 <script>
-import axios from 'axios'
+// import axios from 'axios'
 export default {
   name: 'Login',
   data () {
@@ -63,7 +65,7 @@ export default {
     login:function(){
       var url = 'http://127.0.0.1:8000/login/';
       var self = this;
-      axios.post(url,{
+      this.$axios.post(url,{
         username:self.username,
         password:self.password
       },
@@ -78,9 +80,11 @@ export default {
       )
       .then(
         function(response){
-          console.log(response.data)
-          // self.computers = response.data
-          // console.log(typeof(response.data.data))
+          self.$store.commit('saveToken',response.data.data)
+          // console.log(self.$store.state.username) 
+          console.log(self.$route.query.next)
+
+          self.$router.push(self.$route.query.next)
         }
       )
       .catch(function(error){

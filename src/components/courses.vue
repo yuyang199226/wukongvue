@@ -7,7 +7,7 @@
         <div class="panel-body">
         <span>简介</span>{{ item.brief }}
         <hr>
-         等级：{{ item.level }}
+         等级：{{ item.level_name }}
   </div>
         
      
@@ -18,8 +18,9 @@
 </template>
 
 <script>
-import axios from 'axios'
-axios.defaults.withCredentials=true
+// import axios from 'axios'
+// console.log($axios)
+// this.$axios.defaults.withCredentials=true
 export default {
   name: 'Courses',
   data () {
@@ -34,17 +35,16 @@ export default {
     show_courses:function(){
       var url = 'http://127.0.0.1:8000/courses.json';
       var self = this;
-      axios.get(url
+      this.$axios.defaults.withCredentials=true
+      this.$axios.get(url
       // ,{
       // withCredentials: true 
       // }
       )
       .then(
-        function(response){
-          
+        function(response){      
           self.courses = response.data
-          console.log(response.data)
-          self.courses = response.data
+          console.log(response.data[0])
         }
       )
       .catch(function(error){
