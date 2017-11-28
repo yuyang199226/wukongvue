@@ -8,18 +8,58 @@
           <h3>课程简介</h3>
           <p>{{brief}}</p>
           </div>
-        <div>
-          <h4>价格套餐</h4>
+        <div class="jumbotron">
+          <h3>价格套餐</h3>
           <div class="row">
-              <div v-for="item in price">
-                <router-link to="">
-                  {{item.valid_period}}
-                  {{item.price}}
-                </router-link>
+              <li v-for="item in price" >
+                <div v-if="current_cusor == item.price">
+                  <p style="list-style: none;
+                            width: 220px;
+                            height: 112px;
+                            border: 1px solid #979797;
+                            cursor: pointer;
+                            margin-right: 50px;
+                            margin-bottom: 60px;
+                            display: list-item;
+                            text-align: center;
+                            line-height: 100px;
+                            background-color: greenyellow;
+                            "
+                      v-on:click="pitch_on(item.price,item.valid_period)"
 
-              </div>
+
+                            >
+                          <span style="color: white;">{{item.valid_period}}</span>
+                            <span style="color: white;">{{item.price}}</span>
+                  </p>
+
+                </div>
+                <div v-else>
+                  <p style="list-style: none;
+                            width: 220px;
+                            height: 112px;
+                            border: 1px solid #979797;
+                            cursor: pointer;
+                            margin-right: 50px;
+                            margin-bottom: 60px;
+                            display: list-item;
+                            text-align: center;
+                            line-height: 100px;
+                            "
+                      v-on:click="pitch_on(item.price,item.valid_period)"
+
+
+                            >
+                          <span >{{item.valid_period}}</span>
+                            <span>{{item.price}}</span>
+                  </p>
+
+                </div>
+
+              </li>
 
           </div>
+          <div><router-link to=""  class="btn btn-success ">加入购物车</router-link></div>
         </div>
         <div class="jumbotron">
           <h3>对你的职业生涯有什么帮助</h3>
@@ -30,12 +70,12 @@
           <p>{{prerequisite}}
           </p>
           </div>
-           <div class="jumbotron">
+        <div class="jumbotron">
           <h3>老师列表</h3>
-          <p>
-            <ul>
-              <li v-for="teacher in teachers">
-                <div>{{teacher.name}}</div>
+          <p class="row">
+            <ul  class="col-md-5 col-md-offset-4">
+              <li v-for="teacher in teachers" class="col-md-3">
+                <div class="col-md-offset-3">{{teacher.name}}</div>
                 <div><img v-bind:src="teacher.image"></div>
                 <div>{{teacher.brief}}</div>
               </li>
@@ -60,23 +100,30 @@
 export default {
   name: 'CourseDetail',
   props:['reason','brief','career','prerequisite','teachers','recommend','price'],
-  // data () {
-  //   return {
-  //     course:'',
-  //     hours:'',
-  //     // whystudy:'',
-  //     what_to_study_brief:'',
-  //     career_improvement:'',
-  //     prerequisite:'',
-  //     teachers:'',
-  //     recommend_courses:'',
-  //     // recommend_courses:'',
+   data () {
+     return {
+       course:'',
+       hours:'',
+       what_to_study_brief:'',
+       career_improvement:'',
+       pitch:'',
+       pitch_prices:'',
+       pitch_period:'',
+       current_cusor:-1
 
-  //   }
-  // },
-  // mounted:function(){
-  //   this.get_course();
-  // },
+     }
+   },
+   mounted:function(){
+//     this.get_course();
+   },
+  methods: {
+      pitch_on:function(price,period){
+          this.current_cusor = price    //改变游标，用来判断是否添加样式
+          this.pitch_prices = price   //  把选择的价格保存到全局变量
+          this.pitch_period = period    //把选择的周期存到全局变量
+      }
+
+  }
 }
 </script>
 

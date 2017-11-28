@@ -12,10 +12,13 @@
     </div>
     <div class="four-section">
        <ul>
-      <li  v-on:click="show_overview" >课程概述</li>
-      <li v-on:click="show_chapter" >课程章节</li>
+      <li  v-on:click="show_overview(1)" v-if='pitch == 1' style="background-color: #f5f5f5">课程概述</li>
+      <li  v-on:click="show_overview(1)" v-else>课程</li>
+      <li v-on:click="show_chapter(2)" v-if='pitch == 2' style="background-color: #f5f5f5">课程章节</li>
+      <li v-on:click="show_chapter(2)" v-else >章节</li>
       <li >用户评价(0)</li>
-      <li  v-on:click="show_normalquestions">常见问题</li>
+      <li  v-on:click="show_normalquestions(3)" v-if='pitch == 3' style="background-color: #f5f5f5">常见问题</li>
+      <li  v-on:click="show_normalquestions(3)" v-else >问题</li>
     </ul>
     </div>
     <overview v-bind:reason="whystudy"
@@ -70,6 +73,9 @@ export default {
       hide_normalquestions:'hide',
 
 
+      pitch:1,         //判断是否选中的全局变量
+
+
 
       chapters:"",
       normalquestions:"",
@@ -109,21 +115,24 @@ export default {
       })
     },
 
-    show_overview:function () {
+    show_overview:function (c1) {
         console.log(this.normalquestions)
         this.hide_overview = 'show';
         this.hide_chapters = 'hide';
         this.hide_normalquestions = 'hide';
+        this.pitch = c1                 //修改标签点击样式
     },
-    show_chapter:function () {
+    show_chapter:function (c2) {
         this.hide_overview = 'hide';
         this.hide_chapters = 'show';
         this.hide_normalquestions = 'hide';
+        this.pitch = c2
     },
-    show_normalquestions:function () {
+    show_normalquestions:function (c3) {
         this.hide_overview = 'hide';
         this.hide_chapters = 'hide';
         this.hide_normalquestions = 'show';
+        this.pitch = c3
     },
 
   }

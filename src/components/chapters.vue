@@ -3,7 +3,7 @@
 
 
     <div v-for="chapter in chapters">
-      <div>{{chapter.chapter}}.&nbsp{{chapter.name}}</div>
+      <div class="jumbotron">{{chapter.chapter}}.&nbsp{{chapter.name}}</div>
     </div>
       </div>
 </template>

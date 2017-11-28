@@ -43,8 +43,8 @@ export default {
       )
       .then(
         function(response){
-          self.courses = response.data
-          console.log(response.data[0])
+          self.courses = response.data.data
+          console.log(response.data.data[0])
         }
       )
       .catch(function(error){
