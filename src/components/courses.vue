@@ -1,6 +1,5 @@
 <template>
   <div>
-
     <div>
        <div v-for="item in courses" class="panel panel-default">
            <div class="panel-heading"><router-link :to="{ name: 'coursedetail', params: { id: item.id }}"> {{item.name }}</router-link>  </div>
@@ -43,7 +42,7 @@ export default {
       )
       .then(
         function(response){
-          self.courses = response.data
+          self.courses = response.data.data
           console.log(response.data[0])
         }
       )
