@@ -9,8 +9,8 @@
         <hr>
          等级：{{ item.level_name }}
   </div>
-        
-     
+
+
        </div>
 
    </div>
@@ -38,11 +38,11 @@ export default {
       this.$axios.defaults.withCredentials=true
       this.$axios.get(url
       // ,{
-      // withCredentials: true 
+      // withCredentials: true
       // }
       )
       .then(
-        function(response){      
+        function(response){
           self.courses = response.data
           console.log(response.data[0])
         }

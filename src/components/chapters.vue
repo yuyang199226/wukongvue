@@ -1,11 +1,10 @@
 <template>
-  <div class="chapters"> 
+  <div class="chapters">
 
-课程章节
-1
-2
-3
-4
+
+    <div v-for="chapter in chapters">
+      <div>{{chapter.chapter}}.&nbsp{{chapter.name}}</div>
+    </div>
       </div>
 </template>
 
@@ -13,53 +12,10 @@
 
 export default {
   name: 'CourseDetail',
-  data () {
-    return {
-      course:'',
-      hours:'',
-      whystudy:'',
-      what_to_study_brief:'',
-      career_improvement:'',
-      prerequisite:'',
-      teachers:'',
-      recommend_courses:'',
-      // recommend_courses:'',
-
-    }
-  },
-  mounted:function(){
-    this.get_course();
-  },
-  methods:{
-    get_course:function(){
-      var url = 'http://127.0.0.1:8000/courses/'+this.$route.params.id+'.json';
-      console.log(url)
-      var self = this;
-      this.$axios.defaults.withCredentials=true
-      this.$axios.get(url)
-      .then(
-        function(response){
-          
-          self.courses = response.data
-          self.course = response.data.course;
-          self.hours = response.data.hours;
-          self.whystudy = response.data.why_study;
-          self.career_improvement = response.data.career_improvement;
-          self.prerequisite = response.data.prerequisite;
-          self.teachers = response.data.teachers
-          self.recommend_courses = response.data.recommend_courses
-          // slef.recommend_courses = response.data.recommend_courses;
-        }
-      )
-      .catch(function(error){
-        alert('error')
-      })
-    }
-  }
+  props:['chapters'],
 }
 </script>
 
-<!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
 h1, h3 {
   font-weight: bold;
