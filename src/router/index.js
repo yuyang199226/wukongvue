@@ -4,7 +4,6 @@ import Home from '@/components/home.vue'
 import Login from '@/components/login.vue'
 import Courses from '@/components/courses.vue'
 import CourseDetail from '@/components/coursedetail.vue'
-import Shopping from '@/components/shopping.vue'
 
 Vue.use(Router)
 
@@ -29,13 +28,8 @@ export default new Router({
           path: '/course/:id',
           name: 'coursedetail',
           component: CourseDetail
-        },
-        {
-          path: '/shopping',
-          name: 'shopping',
-          component: Shopping
         }
-
+       
       ]
     },
     // {
