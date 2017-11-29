@@ -25,6 +25,10 @@ module.exports = {
     alias: {
       'vue$': 'vue/dist/vue.esm.js',
       '@': resolve('src'),
+<<<<<<< HEAD
+      'bootstrap':resolve('/static/bootstrap')
+=======
+>>>>>>> ae299960fa9b4dc35cb5c3c9c293a3927c69012a
     }
   },
   module: {

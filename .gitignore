@@ -12,6 +12,8 @@ yarn-error.log*
 *.ntvs*
 *.njsproj
 *.sln
+<<<<<<< HEAD
+=======
 # Logs
 logs
 *.log
@@ -72,3 +74,4 @@ typings/
 .env
 
 
+>>>>>>> ae299960fa9b4dc35cb5c3c9c293a3927c69012a

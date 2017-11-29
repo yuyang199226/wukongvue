@@ -25,7 +25,7 @@
                             line-height: 100px;
                             background-color: greenyellow;
                             "
-                      v-on:click="pitch_on(item.price,item.valid_period)"
+                      v-on:click="pitch_on(item.price,item.price_policy_id)"
 
 
                             >
@@ -46,7 +46,7 @@
                             text-align: center;
                             line-height: 100px;
                             "
-                      v-on:click="pitch_on(item.price,item.valid_period)"
+                      v-on:click="pitch_on(item.price,item.price_policy_id)"
 
 
                             >
@@ -54,13 +54,14 @@
                             <span>{{item.price}}</span>
                   </p>
 
+
+
                 </div>
 
               </li>
 
           </div>
-          <div><router-link to=""  class="btn btn-success ">加入购物车</router-link></div>
-        </div>
+          <div><button to=""  class="btn btn-success "  @click="add_shoppingcar">加入购物车</button></div>
         <div class="jumbotron">
           <h3>对你的职业生涯有什么帮助</h3>
           <p>{{career}}</p>
@@ -84,44 +85,58 @@
           </div>
         <div class="jumbotron">
           <h3> 推荐课程</h3>
-          <p>
             <ul>
                <li v-for="item in recommend">
                  <span></span>{{item.name}}
               </li>
             </ul>
-          </p>
         </div>
       </div>
+  </div>
 </template>
 
 <script>
-
 export default {
   name: 'CourseDetail',
-  props:['reason','brief','career','prerequisite','teachers','recommend','price'],
-   data () {
-     return {
-       course:'',
-       hours:'',
-       what_to_study_brief:'',
-       career_improvement:'',
-       pitch:'',
-       pitch_prices:'',
-       pitch_period:'',
-       current_cusor:-1
+  props: ['reason', 'brief', 'career', 'prerequisite', 'teachers', 'recommend', 'price'],
+  data () {
+    return {
+      course: '',
+      hours: '',
+      what_to_study_brief: '',
+      career_improvement: '',
+      pitch: '',
+      pitch_prices: '',
+      pitch_period: '',
+      price_policy_id:'',
+      current_cusor: -1
 
-     }
-   },
-   mounted:function(){
+    }
+  },
+  mounted: function () {
 //     this.get_course();
-   },
+  },
   methods: {
-      pitch_on:function(price,period){
-          this.current_cusor = price    //改变游标，用来判断是否添加样式
-          this.pitch_prices = price   //  把选择的价格保存到全局变量
-          this.pitch_period = period    //把选择的周期存到全局变量
-      }
+    pitch_on: function (price, price_policy_id) {
+      this.current_cusor = price ;   //改变游标，用来判断是否添加样式
+      this.pitch_prices = price  ; //  把选择的价格保存到全局变量
+      this.price_policy_id = price_policy_id
+    },
+    add_shoppingcar: function () {        //加入购物车函数，传递所选价格和周期
+        let url = 'http://192.168.16.114:8000/shopping.json';
+
+        if(this.pitch_prices&&this.pitch_prices){
+            this.$axios.post(url,{
+                  price_policy_id :this.price_policy_id
+
+              }).then(function (response) {
+                  console.log(response)
+              }).catch(function (error) {
+                console.log(error)
+              });
+        }
+
+    }
 
   }
 }

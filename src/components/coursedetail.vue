@@ -76,7 +76,6 @@ export default {
       pitch:1,         //判断是否选中的全局变量
 
 
-
       chapters:"",
       normalquestions:"",
     }
