@@ -17,7 +17,7 @@ export default new Vuex.Store({
       saveToken: function (state, data) {
         this.state.username = data.username
         this.state.token = data.token
-        this.state.userid = data.userid     //userid
+        this.state.userid = data.userid
         Cookie.set("user", data.username, "20min")
         Cookie.set("token", data.token, "20min")
 
