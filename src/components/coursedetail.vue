@@ -107,6 +107,8 @@ export default {
           self.chapters = response.data.data.chapters;
           self.normalquestions = response.data.data.questions;
 
+
+
         }
       )
       .catch(function(error){

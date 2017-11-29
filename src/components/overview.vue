@@ -47,17 +47,11 @@
                             line-height: 100px;
                             "
                       v-on:click="pitch_on(item.price,item.price_policy_id)"
-
-
                             >
                           <span >{{item.valid_period}}</span>
                             <span>{{item.price}}</span>
                   </p>
-
-
-
                 </div>
-
               </li>
 
           </div>
@@ -98,7 +92,7 @@
 <script>
 export default {
   name: 'CourseDetail',
-  props: ['reason', 'brief', 'career', 'prerequisite', 'teachers', 'recommend', 'price'],
+  props: ['reason', 'brief', 'career', 'prerequisite', 'teachers', 'recommend', 'price','token'],
   data () {
     return {
       course: '',
@@ -123,8 +117,8 @@ export default {
       this.price_policy_id = price_policy_id
     },
     add_shoppingcar: function () {        //加入购物车函数，传递所选价格和周期
-        let url = 'http://192.168.16.114:8000/shopping.json';
-
+        let url = 'http://192.168.16.114:8001/shopping.json';
+        if(this.$store.state.token){
         if(this.pitch_prices&&this.pitch_prices){
             this.$axios.post(url,{
                   price_policy_id :this.price_policy_id
@@ -135,7 +129,10 @@ export default {
                 console.log(error)
               });
         }
-
+      }
+        else{
+            this.$router.push({ path: '/login',query:{next:this.$route.path}})
+        }
     }
 
   }

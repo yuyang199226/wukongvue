@@ -75,7 +75,7 @@ export default {
       .then(
         function(response){
           self.$store.commit('saveToken',response.data.data)
-          // console.log(self.$store.state.username)
+//           console.log(self.$store.state.username)
           console.log(self.$route.query.next)
 
           self.$router.push(self.$route.query.next)
