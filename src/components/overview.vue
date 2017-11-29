@@ -60,6 +60,7 @@
 
           </div>
           <div><router-link to=""  class="btn btn-success ">加入购物车</router-link></div>
+        <div>
         </div>
         <div class="jumbotron">
           <h3>对你的职业生涯有什么帮助</h3>
@@ -93,35 +94,36 @@
           </p>
         </div>
       </div>
+  </div>
 </template>
 
 <script>
 
 export default {
   name: 'CourseDetail',
-  props:['reason','brief','career','prerequisite','teachers','recommend','price'],
-   data () {
-     return {
-       course:'',
-       hours:'',
-       what_to_study_brief:'',
-       career_improvement:'',
-       pitch:'',
-       pitch_prices:'',
-       pitch_period:'',
-       current_cusor:-1
+  props: ['reason', 'brief', 'career', 'prerequisite', 'teachers', 'recommend', 'price'],
+  data () {
+    return {
+      course: '',
+      hours: '',
+      what_to_study_brief: '',
+      career_improvement: '',
+      pitch: '',
+      pitch_prices: '',
+      pitch_period: '',
+      current_cusor: -1
 
-     }
-   },
-   mounted:function(){
+    }
+  },
+  mounted: function () {
 //     this.get_course();
-   },
+  },
   methods: {
-      pitch_on:function(price,period){
-          this.current_cusor = price    //改变游标，用来判断是否添加样式
-          this.pitch_prices = price   //  把选择的价格保存到全局变量
-          this.pitch_period = period    //把选择的周期存到全局变量
-      }
+    pitch_on: function (price, period) {
+      this.current_cusor = price    //改变游标，用来判断是否添加样式
+      this.pitch_prices = price   //  把选择的价格保存到全局变量
+      this.pitch_period = period    //把选择的周期存到全局变量
+    }
 
   }
 }
