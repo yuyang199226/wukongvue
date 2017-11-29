@@ -37,7 +37,7 @@
     <div class="col-xs-offset-2 col-xs-8">
           <!-- {{$store.state.username}} -->
            <button type="button" class="btn btn-success btn-block" v-on:click="login">登录</button>
-            
+
     </div>
 
     </div>
@@ -49,7 +49,6 @@
 </template>
 
 <script>
-// import axios from 'axios'
 export default {
   name: 'Login',
   data () {
@@ -65,23 +64,18 @@ export default {
     login:function(){
       var url = 'http://127.0.0.1:8000/login/';
       var self = this;
+      this.$axios.defaults.withCredentials = true;
       this.$axios.post(url,{
         username:self.username,
         password:self.password
-      },
-      // {
-      //   headsers:{
-      //      'Content-Type': 'application/x-www-form-urlencoded'
-      //   }
-      // }
-      // headers={
-      //   'Content-Type':'application/x-www-form-urlencoded'
-      // }
+      },{
+              'headers':{'Content-Type':'application/json'}
+          }
       )
       .then(
         function(response){
           self.$store.commit('saveToken',response.data.data)
-          // console.log(self.$store.state.username) 
+          // console.log(self.$store.state.username)
           console.log(self.$route.query.next)
 
           self.$router.push(self.$route.query.next)
@@ -114,6 +108,6 @@ a {
 .login{
   height: 400px;
   width:40%;
-  background-color: rosybrown; 
+  background-color: rosybrown;
 }
 </style>
