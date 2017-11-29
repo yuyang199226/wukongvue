@@ -25,7 +25,7 @@
                             line-height: 100px;
                             background-color: greenyellow;
                             "
-                      v-on:click="pitch_on(item.price,item.valid_period)"
+                      v-on:click="pitch_on(item.price,item.price_policy_id)"
 
 
                             >
@@ -46,7 +46,7 @@
                             text-align: center;
                             line-height: 100px;
                             "
-                      v-on:click="pitch_on(item.price,item.valid_period)"
+                      v-on:click="pitch_on(item.price,item.price_policy_id)"
 
 
                             >
@@ -110,6 +110,7 @@ export default {
       pitch: '',
       pitch_prices: '',
       pitch_period: '',
+      price_policy_id:'',
       current_cusor: -1
 
     }
@@ -118,22 +119,20 @@ export default {
 //     this.get_course();
   },
   methods: {
-    pitch_on: function (price, period) {
+    pitch_on: function (price, price_policy_id) {
       this.current_cusor = price ;   //改变游标，用来判断是否添加样式
       this.pitch_prices = price  ; //  把选择的价格保存到全局变量
-      this.pitch_period = period  ;  //把选择的周期存到全局变量
-
+      this.price_policy_id = price_policy_id
     },
     add_shoppingcar: function () {        //加入购物车函数，传递所选价格和周期
         let url = 'http://192.168.16.114:8000/shopping.json';
 
         if(this.pitch_prices&&this.pitch_prices){
             this.$axios.post(url,{
-                  price:this.pitch_prices,
-                  period:this.pitch_period,
+                  price_policy_id :this.price_policy_id
 
               }).then(function (response) {
-                  console.log('ok ')
+                  console.log(response)
               }).catch(function (error) {
                 console.log(error)
               });
