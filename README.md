@@ -1,8 +1,5 @@
-<<<<<<< HEAD
 # frontend
-=======
 # mall
->>>>>>> ae299960fa9b4dc35cb5c3c9c293a3927c69012a
 
 > A Vue.js project
 
