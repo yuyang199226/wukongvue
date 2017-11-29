@@ -9,6 +9,7 @@ import store from './store/store'
 import '../static/bootstrap/css/bootstrap.css'//我的bootstrap ，是通过复制bootstrap文件的，测试用
 
 import axios from "axios"
+
 Vue.prototype.$axios = axios
 // import 'bootstrap/dist/js/bootstrap.min.js'
 

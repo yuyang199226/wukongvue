@@ -59,7 +59,7 @@
               </li>
 
           </div>
-          <div><router-link to=""  class="btn btn-success ">加入购物车</router-link></div>
+          <div><button to=""  class="btn btn-success "  @click="add_shoppingcar">加入购物车</button></div>
         <div>
         </div>
         <div class="jumbotron">
@@ -98,7 +98,6 @@
 </template>
 
 <script>
-
 export default {
   name: 'CourseDetail',
   props: ['reason', 'brief', 'career', 'prerequisite', 'teachers', 'recommend', 'price'],
@@ -120,9 +119,26 @@ export default {
   },
   methods: {
     pitch_on: function (price, period) {
-      this.current_cusor = price    //改变游标，用来判断是否添加样式
-      this.pitch_prices = price   //  把选择的价格保存到全局变量
-      this.pitch_period = period    //把选择的周期存到全局变量
+      this.current_cusor = price ;   //改变游标，用来判断是否添加样式
+      this.pitch_prices = price  ; //  把选择的价格保存到全局变量
+      this.pitch_period = period  ;  //把选择的周期存到全局变量
+
+    },
+    add_shoppingcar: function () {        //加入购物车函数，传递所选价格和周期
+        let url = 'http://192.168.16.114:8000/shopping.json';
+
+        if(this.pitch_prices&&this.pitch_prices){
+            this.$axios.post(url,{
+                  price:this.pitch_prices,
+                  period:this.pitch_period,
+
+              }).then(function (response) {
+                  console.log('ok ')
+              }).catch(function (error) {
+                console.log(error)
+              });
+        }
+
     }
 
   }
