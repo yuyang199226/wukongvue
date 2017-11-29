@@ -39,7 +39,6 @@
     </span>
       <span>
       <button type="button" class="btn btn-primary go_bill" v-on:click="payment">去结账</button>
-      <button type="button" class="btn btn-info">返回</button>
     </span>
     </div>
 
@@ -133,16 +132,20 @@
             check_val.push(a)
           }
         }
-        console.log(check_val)
-        this.$axios.request({
-          method: 'POST',
-          url: 'http://192.168.16.4:8080/payment_handle.json',
-          data: JSON.stringify(check_val)
-        }).then(function (response) {
-          console.log(response.data)
-        }).catch(function (response) {
-          console.log(response.data)
-        })
+        if (check_val.length) {
+          this.$axios.request({
+            method: 'POST',
+            url: 'http://192.168.16.4:8080/payment_handle.json',
+            data: JSON.stringify(check_val)
+          }).then(function (response) {
+            console.log(response.data)
+          }).catch(function (response) {
+            console.log(response.data)
+          })
+        }else {
+          alert('未选择任何支付课程')
+        }
+
       }
     }
   }
