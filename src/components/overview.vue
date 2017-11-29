@@ -54,14 +54,14 @@
                             <span>{{item.price}}</span>
                   </p>
 
+
+
                 </div>
 
               </li>
 
           </div>
           <div><button to=""  class="btn btn-success "  @click="add_shoppingcar">加入购物车</button></div>
-        <div>
-        </div>
         <div class="jumbotron">
           <h3>对你的职业生涯有什么帮助</h3>
           <p>{{career}}</p>
@@ -85,13 +85,11 @@
           </div>
         <div class="jumbotron">
           <h3> 推荐课程</h3>
-          <p>
             <ul>
                <li v-for="item in recommend">
                  <span></span>{{item.name}}
               </li>
             </ul>
-          </p>
         </div>
       </div>
   </div>
