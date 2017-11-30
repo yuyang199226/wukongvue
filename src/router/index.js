@@ -5,6 +5,7 @@ import Login from '@/components/login.vue'
 import Courses from '@/components/courses.vue'
 import CourseDetail from '@/components/coursedetail.vue'
 import Shopping from '@/components/shopping.vue'
+import pay from '@/components/pay.vue'
 
 Vue.use(Router)
 
@@ -34,7 +35,12 @@ export default new Router({
           path: '/shopping',
           name: 'shopping',
           component: Shopping
-        }
+        },
+        {
+          path: '/pay',
+          name: 'pay',
+          component: pay
+        },
 
       ]
     },

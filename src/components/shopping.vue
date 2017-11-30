@@ -21,11 +21,10 @@
           <td>{{item.name}}</td>
           <td>
             <select :name="item.name" class="select-option" v-model="item.default">
-              <option v-for="(value, key) in item.policy" :value="value.price" :id="value.id">{{value.valid_period}}
-              </option>
+              <option v-for="(value, key) in item.policy" :value="value.id" :id="value.id" v-model="value.price">{{value.valid_period}}</option>
             </select>
           </td>
-          <td>{{item.default}}</td>
+          <td>{{item.policy[item.default].price}}</td>
           <td><a v-on:click="del_goods(key)">删除</a></td>
         </tr>
         </tbody>
@@ -53,7 +52,8 @@
         msg: '购物车',
         carData: '',
         price: '',
-        elname: 'td_'
+        elname: 'td_',
+        courseData: ''
       }
     },
     mounted: function () {
